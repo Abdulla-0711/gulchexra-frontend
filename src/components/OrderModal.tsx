@@ -43,7 +43,7 @@ export default function OrderModal({ open, onClose }: Props) {
         address: form.address.trim(),
         email: form.email.trim(),
         oferta,
-        totalPrice,
+        totalPrice: 23,
         items: items.map(i => ({ productId: i.productId, quantity: i.quantity })),
       });
       setStatus('success');

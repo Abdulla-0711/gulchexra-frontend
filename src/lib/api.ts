@@ -1,6 +1,6 @@
 import type { Product } from "@/types/product";
 
-const BASE_URL = "https://api.naqshizarr.uz";
+const BASE_URL = "https://api.chevartextile.uz";
 
 export async function fetchProducts(): Promise<Product[]> {
   const res = await fetch(`${BASE_URL}/product`);
