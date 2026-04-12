@@ -7,7 +7,7 @@ import { useTheme } from "@/contexts/ThemeContext";
 import { useCart } from "@/contexts/CartContext";
 import { translations, t } from "@/i18n/translations";
 import type { Language } from "@/i18n/translations";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo2.png";
 
 const languages: { code: Language; label: string }[] = [
   { code: "uz", label: "O'z" },

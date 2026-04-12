@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import heroBg from "@/assets/hero-bg.jpg";
+import heroBg from "@/assets/hero4.jpg";
 import { Link } from "react-router-dom";
 import { ArrowRight, Sparkles, Shield, Truck, Palette } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
@@ -39,89 +39,155 @@ export default function Home() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative min-h-[85vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[92vh] flex items-center overflow-hidden">
         {/* BG IMAGE */}
         <img
           src={heroBg}
           alt="hero"
-          className="absolute inset-0 w-full h-full object-cover scale-105"
+          className="absolute inset-0 w-full h-full object-cover scale-110"
         />
 
-        {/* OVERLAY (lightda yengil, darkda kuchli) */}
-        <div
-          className="absolute inset-0 
-    bg-gradient-to-r 
-    from-white/80 via-white/5 to-transparent
-    dark:from-black/80 dark:via-black/60 dark:to-transparent
-  "
-        />
+        {/* DARK/LIGHT OVERLAY */}
+        <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/60 to-white/10 dark:from-black/85 dark:via-black/65 dark:to-black/20" />
 
-        {/* BLUR EFFECT */}
-        <div className="absolute inset-0 backdrop-blur-[2px]" />
+        {/* EXTRA DEPTH */}
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+
+        {/* DECOR BLUR CIRCLES */}
+        <div className="absolute top-20 left-10 w-72 h-72 bg-accent/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-10 right-10 w-80 h-80 bg-yellow-400/20 rounded-full blur-3xl" />
+
+        {/* SOFT BLUR */}
+        <div className="absolute inset-0 backdrop-blur-[3px]" />
 
         {/* CONTENT */}
-        <div className="container mx-auto px-4 py-20 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-3xl"
-          >
-            {/* BADGE */}
-            <div
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full 
-        bg-accent/10 backdrop-blur-md border border-accent/20
-        text-accent text-sm font-medium mb-6 shadow-sm
-      "
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* LEFT */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="max-w-3xl"
             >
-              <Sparkles className="w-4 h-4" />
-              <span>Est. 2005</span>
-            </div>
+              {/* BADGE */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 dark:bg-white/10 backdrop-blur-md border border-white/30 dark:border-white/10 text-accent text-sm font-medium mb-6 shadow-lg">
+                <Sparkles className="w-4 h-4" />
+                <span>Est. 2005</span>
+              </div>
 
-            {/* TITLE */}
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              <span className="bg-gradient-to-r from-accent to-yellow-500 bg-clip-text text-transparent">
-                {t(translations.hero.title, lang)}
-              </span>
-            </h1>
+              {/* TITLE */}
+              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold leading-tight mb-6 tracking-tight">
+                <span className="block text-foreground">
+                  {t(translations.hero.title, lang)}
+                </span>
+                <span className="block bg-gradient-to-r from-accent via-yellow-500 to-orange-400 bg-clip-text text-transparent mt-2">
+                  Premium Textile Design
+                </span>
+              </h1>
 
-            {/* SUBTITLE */}
-            <p className="font-body text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl leading-relaxed">
-              {t(translations.hero.subtitle, lang)}
-            </p>
+              {/* SUBTITLE */}
+              <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl leading-relaxed">
+                {t(translations.hero.subtitle, lang)}
+              </p>
 
-            {/* BUTTONS */}
-            <div className="flex flex-wrap gap-4">
-              <Link
-                to="/products"
-                className="inline-flex items-center gap-2 
-            bg-accent text-accent-foreground 
-            px-8 py-4 rounded-xl font-semibold text-lg 
-            hover:scale-105 hover:opacity-90 
-            transition-all duration-300 shadow-lg gold-glow
-          "
-              >
-                {t(translations.hero.cta, lang)}
-                <ArrowRight className="w-5 h-5" />
-              </Link>
+              {/* BUTTONS */}
+              <div className="flex flex-wrap gap-4 mb-10">
+                <Link
+                  to="/products"
+                  className="group inline-flex items-center gap-2 bg-accent text-accent-foreground px-8 py-4 rounded-2xl font-semibold text-lg shadow-xl hover:scale-105 hover:shadow-2xl transition-all duration-300"
+                >
+                  {t(translations.hero.cta, lang)}
+                  <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
 
-              <Link
-                to="/about"
-                className="inline-flex items-center gap-2 
-            px-8 py-4 rounded-xl font-semibold text-lg 
-            border border-border bg-background/60 backdrop-blur-md
-            hover:bg-background transition-all
-          "
-              >
-                {lang === "uz"
-                  ? "Batafsil"
-                  : lang === "ru"
-                    ? "Подробнее"
-                    : "Learn more"}
-              </Link>
-            </div>
-          </motion.div>
+                <Link
+                  to="/about"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl font-semibold text-lg border border-border bg-background/60 backdrop-blur-md hover:bg-background/80 hover:scale-105 transition-all duration-300 shadow-md"
+                >
+                  {lang === "uz"
+                    ? "Batafsil"
+                    : lang === "ru"
+                      ? "Подробнее"
+                      : "Learn more"}
+                </Link>
+              </div>
+
+              {/* STATS */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-2xl">
+                <div className="rounded-2xl bg-background/60 backdrop-blur-md border border-border p-4 shadow-lg">
+                  <h3 className="text-2xl font-bold text-accent">21+</h3>
+                  <p className="text-sm text-muted-foreground">
+                    {lang === "uz"
+                      ? "Yillik tajriba"
+                      : lang === "ru"
+                        ? "Лет опыта"
+                        : "Years of experience"}
+                  </p>
+                </div>
+
+                <div className="rounded-2xl bg-background/60 backdrop-blur-md border border-border p-4 shadow-lg">
+                  <h3 className="text-2xl font-bold text-accent">10K+</h3>
+                  <p className="text-sm text-muted-foreground">
+                    {lang === "uz"
+                      ? "Loyihalar"
+                      : lang === "ru"
+                        ? "Проекты"
+                        : "Projects"}
+                  </p>
+                </div>
+
+                <div className="rounded-2xl bg-background/60 backdrop-blur-md border border-border p-4 shadow-lg col-span-2 sm:col-span-1">
+                  <h3 className="text-2xl font-bold text-accent">100%</h3>
+                  <p className="text-sm text-muted-foreground">
+                    {lang === "uz"
+                      ? "Sifatli mahsulot"
+                      : lang === "ru"
+                        ? "Качество"
+                        : "Quality"}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* RIGHT SIDE CARD */}
+            <motion.div
+              initial={{ opacity: 0, x: 60 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.9, delay: 0.2 }}
+              className="hidden lg:flex justify-end"
+            >
+              <div className="relative w-full max-w-md">
+                <div className="rounded-[32px] border border-white/20 bg-white/10 dark:bg-white/5 backdrop-blur-xl shadow-2xl p-6">
+                  <img
+                    src={heroBg}
+                    alt="preview"
+                    className="w-full h-[420px] object-cover rounded-[24px]"
+                  />
+                  <div className="absolute -bottom-6 -left-6 bg-background/80 backdrop-blur-xl border border-border rounded-2xl p-4 shadow-xl">
+                    <p className="text-sm text-muted-foreground">
+                      {lang === "uz"
+                        ? "Elegant dizayn"
+                        : lang === "ru"
+                          ? "Элегантный дизайн"
+                          : "Elegant design"}
+                    </p>
+                    <h4 className="text-lg font-semibold">
+                      {lang === "uz"
+                        ? "Yuqori sifatli ishlab chiqarish"
+                        : lang === "ru"
+                          ? "Высокое качество"
+                          : "High-quality production"}
+                    </h4>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
+
+        {/* BOTTOM FADE */}
+        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-background to-transparent" />
       </section>
 
       {/* Stats */}
